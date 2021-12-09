@@ -1,12 +1,17 @@
--- Database: sanpham
+-- Table: public.product_info
 
--- DROP DATABASE IF EXISTS sanpham;
+-- DROP TABLE IF EXISTS public.product_info;
 
-CREATE DATABASE sanpham
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'English_Zambia.1252'
-    LC_CTYPE = 'English_Zambia.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
+CREATE TABLE IF NOT EXISTS public.product_info
+(
+    id bigint NOT NULL DEFAULT nextval('product_info_id_seq'::regclass),
+    product_name text COLLATE pg_catalog."default",
+    product_price bigint DEFAULT nextval('product_info_product_price_seq'::regclass),
+    image text COLLATE pg_catalog."default",
+    CONSTRAINT product_info_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.product_info
+    OWNER to postgres;
